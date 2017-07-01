@@ -5,6 +5,8 @@ interface BailoutCallback {
     (state: object): boolean
 }
 
+fetch
+
 interface PayloadCallback {
     (action: Action, state: object): object
 }
@@ -21,19 +23,17 @@ interface TypeDescriptor {
     meta?: Meta
 }
 
-type HTTPMethod = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
 type Type = string | TypeDescriptor;
-type RequestBody = Blob | BufferSource | FormData | URLSearchParams | USVString;
 
 interface RSAAProperties {
     endpoint: string;
-    method: HTTPMethod;
+    method: string;
     types: Type[];
-    body?: RequestBody
+    body?: any
     headers?: {
         [key: string]: string
     };
-    credentials?: "omit" | "same-origin" | "include";
+    credentials?: RequestCredentials;
     bailout: boolean | BailoutCallback
 }
 
