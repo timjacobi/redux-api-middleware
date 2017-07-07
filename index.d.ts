@@ -5,8 +5,6 @@ interface BailoutCallback {
     (state: object): boolean
 }
 
-fetch
-
 interface PayloadCallback {
     (action: Action, state: object): object
 }
@@ -25,7 +23,7 @@ interface TypeDescriptor {
 
 type Type = string | TypeDescriptor;
 
-interface RSAAProperties {
+interface RSAABody {
     endpoint: string;
     method: string;
     types: Type[];
@@ -40,12 +38,12 @@ interface RSAAProperties {
 export const CALL_API: symbol;
 
 export interface RSAA {
-    [CALL_API]: RSAAProperties
+    [CALL_API]: RSAABody
 }
 
-export function isRSAA(action: any): boolean;
-export function validateRSAA(action: any): string[];
-export function isValidRSAA(action: any): boolean;
+export function isRSAA(action: object): boolean;
+export function validateRSAA(action: object): string[];
+export function isValidRSAA(action: object): boolean;
 
 export class InvalidRSAA extends Error {
     constructor(validationErrors: string[]);
